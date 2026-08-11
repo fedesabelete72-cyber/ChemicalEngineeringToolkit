@@ -197,9 +197,11 @@ def main():
                 print("Error: Chemical formula cannot be empty.")
                 continue
 
-            result = chem.molar_mass(formula)
-
-            print(f"Molar Mass = {result} g/mol")
+            try:
+                result = chem.molar_mass(formula)
+                print(f"Molar Mass = {result} g/mol")
+            except ValueError as e:
+                print(f"Error: {e}")
 
         # =========================
         # View Saved History
