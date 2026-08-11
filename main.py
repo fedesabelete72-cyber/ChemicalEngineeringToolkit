@@ -264,7 +264,8 @@ def main():
                 print("3. Flow Rate")
                 print("4. Pipe Velocity")
                 print("5. Pressure Drop")
-                print("6. Back")
+                print("6. Bernoulli Equation")
+                print("7. Back")
 
                 option = input("Choose an option: ").strip()
 
@@ -341,6 +342,28 @@ def main():
                         print("Pressure Drop =", result, "Pa")
 
                     elif option == "6":
+
+                        pressure1 = get_number("Pressure 1 (Pa): ")
+                        velocity1 = get_number("Velocity 1 (m/s): ")
+                        elevation1 = get_number("Elevation 1 (m): ")
+
+                        velocity2 = get_number("Velocity 2 (m/s): ")
+                        elevation2 = get_number("Elevation 2 (m): ")
+
+                        density = get_number("Density (kg/m³): ")
+
+                        result = fluid.bernoulli_equation(
+                            pressure1,
+                            velocity1,
+                            elevation1,
+                            velocity2,
+                            elevation2,
+                            density
+                        )
+
+                        print("Pressure 2 =", result, "Pa")
+
+                    elif option == "7":
                         break
 
                     else:

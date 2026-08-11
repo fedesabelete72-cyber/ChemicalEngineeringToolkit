@@ -1,22 +1,35 @@
 # Chemical Engineering Toolkit
 
-## Developed by
+A Python-based command-line toolkit for performing common Chemical Engineering calculations.
+
+## Developed By
 
 **Fedesa Belete**
 
 ## Version
 
-**1.1**
+**1.2**
 
-## Description
+## Overview
 
-Chemical Engineering Toolkit is a Python-based engineering application designed to help Chemical Engineering students perform common engineering calculations quickly and easily.
+Chemical Engineering Toolkit is an interactive Python application designed to help Chemical Engineering students perform engineering calculations quickly from a command-line interface.
 
-The project combines Python programming, Object-Oriented Programming (OOP), and Chemical Engineering principles into one interactive command-line toolkit.
+The project combines:
 
-## Features
+- Chemical Engineering principles
+- Python programming
+- Object-Oriented Programming (OOP)
+- Modular software design
+- File handling
+- Input validation
 
-### General Tools
+The goal is to provide a practical engineering calculation environment while demonstrating how programming can be applied to Chemical Engineering problems.
+
+---
+
+# Features
+
+## General Tools
 
 - Basic Calculator
 - Unit Converter
@@ -24,7 +37,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Clear History
 - About Section
 
-### Fluid Mechanics
+## Fluid Mechanics
 
 - Density
 - Reynolds Number
@@ -32,7 +45,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Velocity
 - Pressure Drop
 
-### Thermodynamics
+## Thermodynamics
 
 - Ideal Gas Law
 - Boyle's Law
@@ -41,7 +54,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Specific Heat
 - Enthalpy Change
 
-### Material Balance
+## Material Balance
 
 - Overall Mass Balance
 - Component Balance
@@ -53,7 +66,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Mixing
 - Separation Efficiency
 
-### Heat Transfer
+## Heat Transfer
 
 - Heat Conduction
 - Heat Convection
@@ -62,7 +75,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Log Mean Temperature Difference (LMTD)
 - Heat Exchanger Effectiveness
 
-### Mass Transfer
+## Mass Transfer
 
 - Fick's First Law
 - Diffusion Coefficient
@@ -74,7 +87,7 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - Peclet Number
 - Overall Mass Transfer Coefficient
 
-### Reaction Engineering
+## Reaction Engineering
 
 - Reaction Rate
 - First-Order Reaction
@@ -87,59 +100,34 @@ The project combines Python programming, Object-Oriented Programming (OOP), and 
 - PFR Volume
 - Equilibrium Constant
 
-### Chemistry
+## Chemistry
 
 - Molar Mass Calculator
 - Chemical Formula Validation
-- Support for common chemical elements
-- Error handling for invalid formulas
+- Support for selected common elements
+- Invalid formula detection
+- Invalid character detection
+- Empty input validation
 
-## Technologies Used
+---
+
+# Technologies Used
 
 - Python 3
 - Object-Oriented Programming (OOP)
 - Modular Programming
 - File Handling
+- Exception Handling
 - Command-Line Interface (CLI)
+- Git and GitHub
 
-## Project Structure
+---
 
-```text
-ChemicalEngineeringToolkit/
-│
-├── main.py
-├── calculator.py
-├── constants.py
-├── input_handler.py
-├── unit_converter.py
-├── file_manager.py
-├── menus.py
-├── about.py
-│
-├── fluid_mechanics.py
-├── thermodynamics.py
-├── material_balance.py
-├── heat_transfer.py
-├── mass_transfer.py
-├── reaction_engineering.py
-│
-├── engineering/
-│   ├── calculator.py
-│   ├── chemistry.py
-│   ├── fluid_mechanics.py
-│   ├── heat_transfer.py
-│   ├── mass_transfer.py
-│   ├── material_balance.py
-│   ├── reaction_engineering.py
-│   └── thermodynamics.py
-│
-├── data/
-│   ├── calculations.csv
-│   └── history.txt
-│
-├── tests/
-│
-├── periodic_table.json
-├── requirements.txt
-├── .gitignore
-└── README.md
+# Running the Application
+
+The project uses Python 3.
+
+From the project directory, run:
+
+```powershell
+python main.py
