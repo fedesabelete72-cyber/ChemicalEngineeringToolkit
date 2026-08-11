@@ -1,17 +1,51 @@
-# Virtual environments
-venv/
-.venv/
+# ==============================
+# Python
+# ==============================
 
-# Python cache
 __pycache__/
 *.py[cod]
+*.pyo
 
-# Test/cache files
+# ==============================
+# Virtual environments
+# ==============================
+
+.venv/
+venv/
+env/
+
+# ==============================
+# Testing
+# ==============================
+
 .pytest_cache/
+.coverage
+htmlcov/
 
-# Application data
-data/history.txt
+# ==============================
+# IDE / Editor
+# ==============================
 
-# IDE/editor files
 .vscode/
 .idea/
+
+# ==============================
+# Application-generated data
+# ==============================
+
+data/history.txt
+
+# ==============================
+# PyInstaller
+# ==============================
+
+build/
+dist/
+*.spec
+
+# ==============================
+# OS generated files
+# ==============================
+
+.DS_Store
+Thumbs.db
