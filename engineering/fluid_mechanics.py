@@ -5,17 +5,19 @@ class FluidMechanics:
 
     def density(self, mass, volume):
 
-        if volume == 0:
-            return "Error: Volume cannot be zero."
+        if mass < 0:
+            raise ValueError("Mass cannot be negative.")
+
+        if volume <= 0:
+            raise ValueError("Volume must be greater than zero.")
 
         result = mass / volume
 
         self.history.append(
-            f"Density: {mass} / {volume} = {result}"
+            f"Density: {mass} / {volume} = {result} kg/m³"
         )
 
         return result
-
 
     def reynolds_number(
         self,
@@ -25,8 +27,25 @@ class FluidMechanics:
         viscosity
     ):
 
-        if viscosity == 0:
-            return "Error: Viscosity cannot be zero."
+        if density <= 0:
+            raise ValueError(
+                "Density must be greater than zero."
+            )
+
+        if velocity < 0:
+            raise ValueError(
+                "Velocity cannot be negative."
+            )
+
+        if diameter <= 0:
+            raise ValueError(
+                "Diameter must be greater than zero."
+            )
+
+        if viscosity <= 0:
+            raise ValueError(
+                "Viscosity must be greater than zero."
+            )
 
         result = (
             density
@@ -41,11 +60,17 @@ class FluidMechanics:
 
         return result
 
-
     def flow_rate(self, area, velocity):
 
-        if area < 0 or velocity < 0:
-            return "Error: Area and velocity must be positive."
+        if area <= 0:
+            raise ValueError(
+                "Area must be greater than zero."
+            )
+
+        if velocity < 0:
+            raise ValueError(
+                "Velocity cannot be negative."
+            )
 
         result = area * velocity
 
@@ -55,11 +80,17 @@ class FluidMechanics:
 
         return result
 
-
     def velocity(self, flow_rate, area):
 
-        if area == 0:
-            return "Error: Area cannot be zero."
+        if flow_rate < 0:
+            raise ValueError(
+                "Flow rate cannot be negative."
+            )
+
+        if area <= 0:
+            raise ValueError(
+                "Area must be greater than zero."
+            )
 
         result = flow_rate / area
 
@@ -68,7 +99,6 @@ class FluidMechanics:
         )
 
         return result
-
 
     def pressure_drop(
         self,
@@ -79,8 +109,30 @@ class FluidMechanics:
         velocity
     ):
 
-        if diameter == 0:
-            return "Error: Diameter cannot be zero."
+        if friction_factor < 0:
+            raise ValueError(
+                "Friction factor cannot be negative."
+            )
+
+        if length < 0:
+            raise ValueError(
+                "Length cannot be negative."
+            )
+
+        if diameter <= 0:
+            raise ValueError(
+                "Diameter must be greater than zero."
+            )
+
+        if density <= 0:
+            raise ValueError(
+                "Density must be greater than zero."
+            )
+
+        if velocity < 0:
+            raise ValueError(
+                "Velocity cannot be negative."
+            )
 
         result = (
             friction_factor

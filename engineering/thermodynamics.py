@@ -1,52 +1,99 @@
+from constants import R
+
+
 class Thermodynamics:
 
     def __init__(self):
         self.history = []
 
-
     def ideal_gas_law(self, pressure, volume, temperature):
 
-        R = 8.314
+        if pressure <= 0:
+            raise ValueError(
+                "Pressure must be greater than zero."
+            )
 
-        if temperature == 0:
-            return "Error: Temperature cannot be zero."
+        if volume <= 0:
+            raise ValueError(
+                "Volume must be greater than zero."
+            )
+
+        if temperature <= 0:
+            raise ValueError(
+                "Temperature must be greater than zero Kelvin."
+            )
 
         result = (pressure * volume) / (R * temperature)
 
         self.history.append(
-            f"Ideal Gas Law: {result}"
+            f"Ideal Gas Law: {result} mol"
         )
 
         return result
 
+    def boyles_law(
+        self,
+        pressure1,
+        volume1,
+        volume2
+    ):
 
-    def boyles_law(self, pressure1, volume1, volume2):
+        if pressure1 <= 0:
+            raise ValueError(
+                "Initial pressure must be greater than zero."
+            )
 
-        if volume2 == 0:
-            return "Error: Final volume cannot be zero."
+        if volume1 <= 0:
+            raise ValueError(
+                "Initial volume must be greater than zero."
+            )
+
+        if volume2 <= 0:
+            raise ValueError(
+                "Final volume must be greater than zero."
+            )
 
         result = (pressure1 * volume1) / volume2
 
         self.history.append(
-            f"Boyle's Law: {result}"
+            f"Boyle's Law: {result} Pa"
         )
 
         return result
 
+    def charles_law(
+        self,
+        volume1,
+        temperature1,
+        temperature2
+    ):
 
-    def charles_law(self, volume1, temperature1, temperature2):
+        if volume1 <= 0:
+            raise ValueError(
+                "Initial volume must be greater than zero."
+            )
 
-        if temperature1 == 0:
-            return "Error: Initial temperature cannot be zero."
+        if temperature1 <= 0:
+            raise ValueError(
+                "Initial temperature must be greater than zero Kelvin."
+            )
 
-        result = (volume1 * temperature2) / temperature1
+        if temperature2 <= 0:
+            raise ValueError(
+                "Final temperature must be greater than zero Kelvin."
+            )
+
+        result = (
+            volume1
+            * temperature2
+            / temperature1
+        )
 
         self.history.append(
-            f"Charles's Law: {result}"
+            f"Charles's Law: {result} m³"
         )
 
         return result
-
 
     def combined_gas_law(
         self,
@@ -57,11 +104,30 @@ class Thermodynamics:
         temperature2
     ):
 
-        if temperature1 == 0:
-            return "Error: Initial temperature cannot be zero."
+        if pressure1 <= 0:
+            raise ValueError(
+                "Initial pressure must be greater than zero."
+            )
 
-        if volume2 == 0:
-            return "Error: Final volume cannot be zero."
+        if volume1 <= 0:
+            raise ValueError(
+                "Initial volume must be greater than zero."
+            )
+
+        if temperature1 <= 0:
+            raise ValueError(
+                "Initial temperature must be greater than zero Kelvin."
+            )
+
+        if volume2 <= 0:
+            raise ValueError(
+                "Final volume must be greater than zero."
+            )
+
+        if temperature2 <= 0:
+            raise ValueError(
+                "Final temperature must be greater than zero Kelvin."
+            )
 
         result = (
             pressure1
@@ -72,11 +138,10 @@ class Thermodynamics:
         )
 
         self.history.append(
-            f"Combined Gas Law: {result}"
+            f"Combined Gas Law: {result} Pa"
         )
 
         return result
-
 
     def specific_heat(
         self,
@@ -85,6 +150,16 @@ class Thermodynamics:
         temperature_change
     ):
 
+        if mass < 0:
+            raise ValueError(
+                "Mass cannot be negative."
+            )
+
+        if specific_heat_capacity <= 0:
+            raise ValueError(
+                "Specific heat capacity must be greater than zero."
+            )
+
         result = (
             mass
             * specific_heat_capacity
@@ -92,11 +167,10 @@ class Thermodynamics:
         )
 
         self.history.append(
-            f"Specific Heat: {result}"
+            f"Specific Heat: {result} J"
         )
 
         return result
-
 
     def enthalpy_change(
         self,
@@ -105,10 +179,24 @@ class Thermodynamics:
         temperature_change
     ):
 
-        result = mass * cp * temperature_change
+        if mass < 0:
+            raise ValueError(
+                "Mass cannot be negative."
+            )
+
+        if cp <= 0:
+            raise ValueError(
+                "Heat capacity (Cp) must be greater than zero."
+            )
+
+        result = (
+            mass
+            * cp
+            * temperature_change
+        )
 
         self.history.append(
-            f"Enthalpy Change: {result}"
+            f"Enthalpy Change: {result} J"
         )
 
         return result

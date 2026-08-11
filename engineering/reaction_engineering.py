@@ -1,5 +1,7 @@
 import math
 
+from constants import R
+
 
 class ReactionEngineering:
 
@@ -8,6 +10,7 @@ class ReactionEngineering:
 
     # --------------------------------------
     # Reaction Rate
+    #
     # -rA = k(CA)^n
     # --------------------------------------
     def reaction_rate(
@@ -18,16 +21,23 @@ class ReactionEngineering:
     ):
 
         if rate_constant <= 0:
-            return "Error: Rate constant must be positive."
+            raise ValueError(
+                "Rate constant must be greater than zero."
+            )
 
         if concentration < 0:
-            return "Error: Concentration cannot be negative."
+            raise ValueError(
+                "Concentration cannot be negative."
+            )
 
         if reaction_order < 0:
-            return "Error: Reaction order cannot be negative."
+            raise ValueError(
+                "Reaction order cannot be negative."
+            )
 
-        result = rate_constant * (
-            concentration ** reaction_order
+        result = (
+            rate_constant
+            * concentration ** reaction_order
         )
 
         self.history.append(
@@ -36,9 +46,9 @@ class ReactionEngineering:
 
         return round(result, 6)
 
-
     # --------------------------------------
     # First Order Reaction
+    #
     # CA = CA0 e^(-kt)
     # --------------------------------------
     def first_order_reaction(
@@ -49,28 +59,38 @@ class ReactionEngineering:
     ):
 
         if initial_concentration < 0:
-            return "Error: Initial concentration cannot be negative."
+            raise ValueError(
+                "Initial concentration cannot be negative."
+            )
 
         if rate_constant <= 0:
-            return "Error: Rate constant must be positive."
+            raise ValueError(
+                "Rate constant must be greater than zero."
+            )
 
         if time < 0:
-            return "Error: Time cannot be negative."
+            raise ValueError(
+                "Time cannot be negative."
+            )
 
-        result = initial_concentration * math.exp(
-            -rate_constant * time
+        result = (
+            initial_concentration
+            * math.exp(
+                -rate_constant * time
+            )
         )
 
         self.history.append(
-            f"First Order Reaction: CA = {result:.6f}"
+            f"First Order Reaction: "
+            f"CA = {result:.6f}"
         )
 
         return round(result, 6)
 
-
     # --------------------------------------
     # Second Order Reaction
-    # CA = CA0/(1+kCA0t)
+    #
+    # CA = CA0 / (1 + k CA0 t)
     # --------------------------------------
     def second_order_reaction(
         self,
@@ -80,39 +100,52 @@ class ReactionEngineering:
     ):
 
         if initial_concentration <= 0:
-            return "Error: Initial concentration must be positive."
+            raise ValueError(
+                "Initial concentration must "
+                "be greater than zero."
+            )
 
         if rate_constant <= 0:
-            return "Error: Rate constant must be positive."
+            raise ValueError(
+                "Rate constant must be greater than zero."
+            )
 
         if time < 0:
-            return "Error: Time cannot be negative."
+            raise ValueError(
+                "Time cannot be negative."
+            )
 
         denominator = (
-            1 +
-            rate_constant *
-            initial_concentration *
-            time
+            1
+            + rate_constant
+            * initial_concentration
+            * time
         )
 
         if denominator <= 0:
-            return "Error: Invalid inputs."
+            raise ValueError(
+                "Invalid inputs produced a "
+                "non-positive denominator."
+            )
 
         result = (
-            initial_concentration /
-            denominator
+            initial_concentration
+            / denominator
         )
 
         self.history.append(
-            f"Second Order Reaction: CA = {result:.6f}"
+            f"Second Order Reaction: "
+            f"CA = {result:.6f}"
         )
 
         return round(result, 6)
 
-
     # --------------------------------------
     # Arrhenius Equation
-    # k = A exp(-Ea/RT)
+    #
+    # k = A exp(-Ea / RT)
+    #
+    # Temperature MUST be Kelvin.
     # --------------------------------------
     def arrhenius_equation(
         self,
@@ -122,31 +155,41 @@ class ReactionEngineering:
     ):
 
         if frequency_factor <= 0:
-            return "Error: Frequency factor must be positive."
+            raise ValueError(
+                "Frequency factor must "
+                "be greater than zero."
+            )
 
-        if activation_energy <= 0:
-            return "Error: Activation energy must be positive."
+        if activation_energy < 0:
+            raise ValueError(
+                "Activation energy cannot be negative."
+            )
 
         if temperature <= 0:
-            return "Error: Temperature must be in Kelvin."
+            raise ValueError(
+                "Temperature must be greater "
+                "than zero Kelvin."
+            )
 
-        R = 8.314
-
-        result = frequency_factor * math.exp(
-            -activation_energy /
-            (R * temperature)
+        result = (
+            frequency_factor
+            * math.exp(
+                -activation_energy
+                / (R * temperature)
+            )
         )
 
         self.history.append(
-            f"Arrhenius Equation: k = {result:.8f}"
+            f"Arrhenius Equation: "
+            f"k = {result:.8f}"
         )
 
         return round(result, 8)
 
-
     # --------------------------------------
     # Residence Time
-    # τ = V/Q
+    #
+    # τ = V / Q
     # --------------------------------------
     def residence_time(
         self,
@@ -155,26 +198,33 @@ class ReactionEngineering:
     ):
 
         if reactor_volume <= 0:
-            return "Error: Reactor volume must be positive."
+            raise ValueError(
+                "Reactor volume must "
+                "be greater than zero."
+            )
 
         if volumetric_flow_rate <= 0:
-            return "Error: Flow rate must be positive."
+            raise ValueError(
+                "Volumetric flow rate must "
+                "be greater than zero."
+            )
 
         result = (
-            reactor_volume /
-            volumetric_flow_rate
+            reactor_volume
+            / volumetric_flow_rate
         )
 
         self.history.append(
-            f"Residence Time: {result:.3f} s"
+            f"Residence Time: "
+            f"{result:.3f} s"
         )
 
         return round(result, 3)
 
-
     # --------------------------------------
     # Reactor Conversion
-    # X = ((FA0-FA)/FA0)*100
+    #
+    # X = ((FA0 - FA) / FA0) × 100
     # --------------------------------------
     def reactor_conversion(
         self,
@@ -183,13 +233,21 @@ class ReactionEngineering:
     ):
 
         if inlet_moles <= 0:
-            return "Error: Inlet moles must be positive."
+            raise ValueError(
+                "Inlet moles must "
+                "be greater than zero."
+            )
 
         if outlet_moles < 0:
-            return "Error: Outlet moles cannot be negative."
+            raise ValueError(
+                "Outlet moles cannot be negative."
+            )
 
         if outlet_moles > inlet_moles:
-            return "Error: Outlet cannot exceed inlet."
+            raise ValueError(
+                "Outlet moles cannot exceed "
+                "inlet moles."
+            )
 
         result = (
             (inlet_moles - outlet_moles)
@@ -202,18 +260,20 @@ class ReactionEngineering:
 
         return round(result, 2)
 
-
     # --------------------------------------
-    # Half Life
-    # t1/2 = 0.693/k
-    # First order only
+    # First-Order Half Life
+    #
+    # t1/2 = ln(2) / k
     # --------------------------------------
     def half_life(self, rate_constant):
 
         if rate_constant <= 0:
-            return "Error: Rate constant must be positive."
+            raise ValueError(
+                "Rate constant must "
+                "be greater than zero."
+            )
 
-        result = 0.693 / rate_constant
+        result = math.log(2) / rate_constant
 
         self.history.append(
             f"Half Life: {result:.3f} s"
@@ -221,10 +281,10 @@ class ReactionEngineering:
 
         return round(result, 3)
 
-
     # --------------------------------------
     # CSTR Reactor Volume
-    # V = FA0X / (-rA)
+    #
+    # V = FA0 X / (-rA)
     # --------------------------------------
     def cstr_volume(
         self,
@@ -234,18 +294,27 @@ class ReactionEngineering:
     ):
 
         if inlet_molar_flow <= 0:
-            return "Error: Molar flow must be positive."
+            raise ValueError(
+                "Molar flow must "
+                "be greater than zero."
+            )
 
-        if conversion < 0 or conversion > 1:
-            return "Error: Conversion must be between 0 and 1."
+        if not 0 <= conversion <= 1:
+            raise ValueError(
+                "Conversion must be "
+                "between 0 and 1."
+            )
 
         if reaction_rate <= 0:
-            return "Error: Reaction rate must be positive."
+            raise ValueError(
+                "Reaction rate must "
+                "be greater than zero."
+            )
 
         result = (
-            inlet_molar_flow *
-            conversion /
-            reaction_rate
+            inlet_molar_flow
+            * conversion
+            / reaction_rate
         )
 
         self.history.append(
@@ -254,11 +323,17 @@ class ReactionEngineering:
 
         return round(result, 3)
 
-
     # --------------------------------------
-    # PFR Reactor Volume
-    # Simplified:
-    # V = FA0X / (-rA)
+    # Simplified PFR Reactor Volume
+    #
+    # V ≈ FA0 X / (-rA)
+    #
+    # NOTE:
+    # This is an approximation using a
+    # representative/constant reaction rate.
+    # General PFR design requires integration:
+    #
+    # V = FA0 ∫(dX / -rA)
     # --------------------------------------
     def pfr_volume(
         self,
@@ -268,30 +343,42 @@ class ReactionEngineering:
     ):
 
         if inlet_molar_flow <= 0:
-            return "Error: Molar flow must be positive."
+            raise ValueError(
+                "Molar flow must "
+                "be greater than zero."
+            )
 
-        if conversion < 0 or conversion > 1:
-            return "Error: Conversion must be between 0 and 1."
+        if not 0 <= conversion <= 1:
+            raise ValueError(
+                "Conversion must be "
+                "between 0 and 1."
+            )
 
         if reaction_rate <= 0:
-            return "Error: Reaction rate must be positive."
+            raise ValueError(
+                "Reaction rate must "
+                "be greater than zero."
+            )
 
         result = (
-            inlet_molar_flow *
-            conversion /
-            reaction_rate
+            inlet_molar_flow
+            * conversion
+            / reaction_rate
         )
 
         self.history.append(
-            f"PFR Volume: {result:.3f} m³"
+            f"Simplified PFR Volume: "
+            f"{result:.3f} m³"
         )
 
         return round(result, 3)
 
-
     # --------------------------------------
-    # Equilibrium Constant
+    # Simplified Equilibrium Constant
+    #
     # K = Products / Reactants
+    #
+    # Educational simplified form.
     # --------------------------------------
     def equilibrium_constant(
         self,
@@ -299,13 +386,22 @@ class ReactionEngineering:
         reactants
     ):
 
+        if products < 0:
+            raise ValueError(
+                "Products cannot be negative."
+            )
+
         if reactants <= 0:
-            return "Error: Reactants must be positive."
+            raise ValueError(
+                "Reactants must "
+                "be greater than zero."
+            )
 
         result = products / reactants
 
         self.history.append(
-            f"Equilibrium Constant: {result:.6f}"
+            f"Equilibrium Constant: "
+            f"{result:.6f}"
         )
 
         return round(result, 6)

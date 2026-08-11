@@ -15,18 +15,26 @@ class MassTransfer:
     ):
 
         if diffusion_coefficient <= 0:
-            return "Error: Diffusion coefficient must be positive."
+            raise ValueError(
+                "Diffusion coefficient must be greater than zero."
+            )
 
         if distance <= 0:
-            return "Error: Distance must be positive."
+            raise ValueError(
+                "Distance must be greater than zero."
+            )
 
         result = (
             -diffusion_coefficient
-            * (concentration_difference / distance)
+            * (
+                concentration_difference
+                / distance
+            )
         )
 
         self.history.append(
-            f"Fick's First Law: J = {result:.6f} mol/m²·s"
+            f"Fick's First Law: "
+            f"J = {result:.6f} mol/m²·s"
         )
 
         return round(result, 6)
@@ -43,10 +51,14 @@ class MassTransfer:
     ):
 
         if concentration_difference == 0:
-            return "Error: Concentration difference cannot be zero."
+            raise ValueError(
+                "Concentration difference cannot be zero."
+            )
 
         if distance <= 0:
-            return "Error: Distance must be positive."
+            raise ValueError(
+                "Distance must be greater than zero."
+            )
 
         result = (
             -mass_flux
@@ -54,8 +66,16 @@ class MassTransfer:
             / concentration_difference
         )
 
+        if result <= 0:
+            raise ValueError(
+                "Calculated diffusion coefficient must "
+                "be greater than zero. Check the signs "
+                "of mass flux and concentration difference."
+            )
+
         self.history.append(
-            f"Diffusion Coefficient: D = {result:.8f} m²/s"
+            f"Diffusion Coefficient: "
+            f"D = {result:.8f} m²/s"
         )
 
         return round(result, 8)
@@ -64,15 +84,25 @@ class MassTransfer:
     # Mass Flux
     # J = ṁ/A
     # ----------------------------------
-    def mass_flux(self, mass_flow_rate, area):
+    def mass_flux(
+        self,
+        mass_flow_rate,
+        area
+    ):
 
         if area <= 0:
-            return "Error: Area must be positive."
+            raise ValueError(
+                "Area must be greater than zero."
+            )
+
+        # Mass flow rate may be negative because
+        # mass flux has a direction.
 
         result = mass_flow_rate / area
 
         self.history.append(
-            f"Mass Flux: {result:.6f} kg/m²·s"
+            f"Mass Flux: "
+            f"{result:.6f} kg/m²·s"
         )
 
         return round(result, 6)
@@ -89,15 +119,22 @@ class MassTransfer:
     ):
 
         if mass_transfer_coefficient <= 0:
-            return "Error: Mass transfer coefficient must be positive."
+            raise ValueError(
+                "Mass transfer coefficient must "
+                "be greater than zero."
+            )
 
         result = (
             mass_transfer_coefficient
-            * (surface_concentration - bulk_concentration)
+            * (
+                surface_concentration
+                - bulk_concentration
+            )
         )
 
         self.history.append(
-            f"Convective Mass Transfer = {result:.6f}"
+            f"Convective Mass Transfer: "
+            f"N = {result:.6f}"
         )
 
         return round(result, 6)
@@ -114,13 +151,22 @@ class MassTransfer:
     ):
 
         if mass_transfer_coefficient <= 0:
-            return "Error: Mass transfer coefficient must be positive."
+            raise ValueError(
+                "Mass transfer coefficient must "
+                "be greater than zero."
+            )
 
         if characteristic_length <= 0:
-            return "Error: Characteristic length must be positive."
+            raise ValueError(
+                "Characteristic length must "
+                "be greater than zero."
+            )
 
         if diffusion_coefficient <= 0:
-            return "Error: Diffusion coefficient must be positive."
+            raise ValueError(
+                "Diffusion coefficient must "
+                "be greater than zero."
+            )
 
         result = (
             mass_transfer_coefficient
@@ -146,16 +192,27 @@ class MassTransfer:
     ):
 
         if viscosity <= 0:
-            return "Error: Viscosity must be positive."
+            raise ValueError(
+                "Viscosity must be greater than zero."
+            )
 
         if density <= 0:
-            return "Error: Density must be positive."
+            raise ValueError(
+                "Density must be greater than zero."
+            )
 
         if diffusion_coefficient <= 0:
-            return "Error: Diffusion coefficient must be positive."
+            raise ValueError(
+                "Diffusion coefficient must "
+                "be greater than zero."
+            )
 
-        result = viscosity / (
-            density * diffusion_coefficient
+        result = (
+            viscosity
+            / (
+                density
+                * diffusion_coefficient
+            )
         )
 
         self.history.append(
@@ -175,10 +232,16 @@ class MassTransfer:
     ):
 
         if thermal_diffusivity <= 0:
-            return "Error: Thermal diffusivity must be positive."
+            raise ValueError(
+                "Thermal diffusivity must "
+                "be greater than zero."
+            )
 
         if diffusion_coefficient <= 0:
-            return "Error: Diffusion coefficient must be positive."
+            raise ValueError(
+                "Diffusion coefficient must "
+                "be greater than zero."
+            )
 
         result = (
             thermal_diffusivity
@@ -202,10 +265,16 @@ class MassTransfer:
     ):
 
         if reynolds_number <= 0:
-            return "Error: Reynolds number must be positive."
+            raise ValueError(
+                "Reynolds number must "
+                "be greater than zero."
+            )
 
         if schmidt_number <= 0:
-            return "Error: Schmidt number must be positive."
+            raise ValueError(
+                "Schmidt number must "
+                "be greater than zero."
+            )
 
         result = (
             reynolds_number
@@ -229,7 +298,9 @@ class MassTransfer:
     ):
 
         if concentration_difference == 0:
-            return "Error: Concentration difference cannot be zero."
+            raise ValueError(
+                "Concentration difference cannot be zero."
+            )
 
         result = (
             mass_flux
@@ -237,7 +308,8 @@ class MassTransfer:
         )
 
         self.history.append(
-            f"Overall Mass Transfer Coefficient: {result:.6f}"
+            f"Overall Mass Transfer Coefficient: "
+            f"{result:.6f}"
         )
 
-        return round(result, 6) 
+        return round(result, 6)

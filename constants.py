@@ -1,3 +1,5 @@
+STEFAN_BOLTZMANN = 5.670374419e-8
+R = 8.314
 ATOMIC_MASSES = {
     "H": 1.008,
     "C": 12.011,
