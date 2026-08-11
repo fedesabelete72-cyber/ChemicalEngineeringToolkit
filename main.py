@@ -82,43 +82,167 @@ def main():
 
             except ValueError:
                 print("Please enter valid numbers.")
-
-        # =========================
-        # Unit Converter
-        # =========================
+    # =========================
+    # Unit Converter
+    # =========================
 
         elif choice == "2":
+
+          while True:
 
             unit_converter_menu()
 
             option = input("Choose conversion: ").strip()
 
+            if option == "29":
+                break
+
             try:
                 value = get_number("Enter value: ")
 
+                # =========================
+                # Temperature
+                # =========================
+
                 if option == "1":
                     result = unit_converter.celsius_to_kelvin(value)
-                    print("Result:", result)
+                    print("Result:", result, "K")
 
                 elif option == "2":
                     result = unit_converter.kelvin_to_celsius(value)
-                    print("Result:", result)
+                    print("Result:", result, "°C")
 
                 elif option == "3":
-                    result = unit_converter.kg_to_gram(value)
-                    print("Result:", result)
+                    result = unit_converter.celsius_to_fahrenheit(value)
+                    print("Result:", result, "°F")
 
                 elif option == "4":
-                    result = unit_converter.gram_to_kg(value)
-                    print("Result:", result)
+                    result = unit_converter.fahrenheit_to_celsius(value)
+                    print("Result:", result, "°C")
+
+                # =========================
+                # Mass
+                # =========================
 
                 elif option == "5":
-                    result = unit_converter.meter_to_cm(value)
-                    print("Result:", result)
+                    result = unit_converter.kg_to_gram(value)
+                    print("Result:", result, "g")
 
                 elif option == "6":
+                    result = unit_converter.gram_to_kg(value)
+                    print("Result:", result, "kg")
+
+                # =========================
+                # Length
+                # =========================
+
+                elif option == "7":
+                    result = unit_converter.meter_to_cm(value)
+                    print("Result:", result, "cm")
+
+                elif option == "8":
                     result = unit_converter.cm_to_meter(value)
-                    print("Result:", result)
+                    print("Result:", result, "m")
+
+                elif option == "9":
+                    result = unit_converter.meter_to_mm(value)
+                    print("Result:", result, "mm")
+
+                elif option == "10":
+                    result = unit_converter.mm_to_meter(value)
+                    print("Result:", result, "m")
+
+                # =========================
+                # Pressure
+                # =========================
+
+                elif option == "11":
+                    result = unit_converter.pascal_to_kilopascal(value)
+                    print("Result:", result, "kPa")
+
+                elif option == "12":
+                    result = unit_converter.kilopascal_to_pascal(value)
+                    print("Result:", result, "Pa")
+
+                elif option == "13":
+                    result = unit_converter.pascal_to_bar(value)
+                    print("Result:", result, "bar")
+
+                elif option == "14":
+                    result = unit_converter.bar_to_pascal(value)
+                    print("Result:", result, "Pa")
+
+                elif option == "15":
+                    result = unit_converter.pascal_to_atmosphere(value)
+                    print("Result:", result, "atm")
+
+                elif option == "16":
+                    result = unit_converter.atmosphere_to_pascal(value)
+                    print("Result:", result, "Pa")
+
+                # =========================
+                # Volume
+                # =========================
+
+                elif option == "17":
+                    result = unit_converter.cubic_meter_to_liter(value)
+                    print("Result:", result, "L")
+
+                elif option == "18":
+                    result = unit_converter.liter_to_cubic_meter(value)
+                    print("Result:", result, "m³")
+
+                elif option == "19":
+                    result = unit_converter.liter_to_milliliter(value)
+                    print("Result:", result, "mL")
+
+                elif option == "20":
+                    result = unit_converter.milliliter_to_liter(value)
+                    print("Result:", result, "L")
+
+                # =========================
+                # Energy
+                # =========================
+
+                elif option == "21":
+                    result = unit_converter.joule_to_kilojoule(value)
+                    print("Result:", result, "kJ")
+
+                elif option == "22":
+                    result = unit_converter.kilojoule_to_joule(value)
+                    print("Result:", result, "J")
+
+                # =========================
+                # Power
+                # =========================
+
+                elif option == "23":
+                    result = unit_converter.watt_to_kilowatt(value)
+                    print("Result:", result, "kW")
+
+                elif option == "24":
+                    result = unit_converter.kilowatt_to_watt(value)
+                    print("Result:", result, "W")
+
+                # =========================
+                # Time
+                # =========================
+
+                elif option == "25":
+                    result = unit_converter.second_to_minute(value)
+                    print("Result:", result, "min")
+
+                elif option == "26":
+                    result = unit_converter.minute_to_second(value)
+                    print("Result:", result, "s")
+
+                elif option == "27":
+                    result = unit_converter.minute_to_hour(value)
+                    print("Result:", result, "h")
+
+                elif option == "28":
+                    result = unit_converter.hour_to_minute(value)
+                    print("Result:", result, "min")
 
                 else:
                     print("Invalid conversion.")
