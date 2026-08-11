@@ -1,5 +1,7 @@
 from input_handler import get_number
+
 from calculator import Calculator
+
 from engineering.fluid_mechanics import FluidMechanics
 from engineering.thermodynamics import Thermodynamics
 from engineering.material_balance import MaterialBalance
@@ -13,210 +15,252 @@ from thermodynamics import thermodynamics
 from material_balance import material_balance
 from heat_transfer import heat_transfer
 from reaction_engineering import reaction_engineering
-from mass_transfer import mass_transfer      # <-- ADD THIS
+from mass_transfer import mass_transfer
+
 from about import about
 
 from unit_converter import UnitConverter
+
 from file_manager import load_history, clear_history
-def about():
-
-    print("\n====================================")
-    print(" Chemical Engineering Toolkit v1.0 ")
-    print("====================================")
-
-    print("""
-A Python-based engineering calculation toolkit.
-
-Modules included:
-- Basic Calculator
-- Unit Converter
-- Fluid Mechanics
-- Thermodynamics
-- Material Balance
-- Heat Transfer
-- Mass Transfer
-- Reaction Engineering
-- Chemistry / Molar Mass
-
-Purpose:
-Helping chemical engineering students
-perform common engineering calculations.
-
-Developed using:
-Python + Object-Oriented Programming
-
-Version:
-1.0
-""")
 
 from menus import (
     main_menu,
     calculator_menu,
     unit_converter_menu,
 )
-calculator = Calculator()
-fluid = FluidMechanics()
-thermo = Thermodynamics()
-material = MaterialBalance()
-heat = HeatTransfer()
-reaction = ReactionEngineering()
-mass = MassTransfer()
-chem = Chemistry()
-unit_converter = UnitConverter()
 
-while True:
 
-    main_menu()
-
-    choice = input("\nChoose an option: ")
+def main():
 
     # =========================
-    # Basic Calculator
+    # Initialize calculators
     # =========================
-    if choice == "1":
-        try:
-            a = get_number("First number: ")
-            b = get_number("Second number: ")
 
-            calculator_menu()
+    calculator = Calculator()
+    fluid = FluidMechanics()
+    thermo = Thermodynamics()
+    material = MaterialBalance()
+    heat = HeatTransfer()
+    reaction = ReactionEngineering()
+    mass = MassTransfer()
+    chem = Chemistry()
+    unit_converter = UnitConverter()
 
-            operation = input("Choose operation: ")
+    # =========================
+    # Main program loop
+    # =========================
 
-            if operation == "1":
-                print("Result:", calculator.add(a, b))
+    while True:
 
-            elif operation == "2":
-                print("Result:", calculator.subtract(a, b))
+        main_menu()
 
-            elif operation == "3":
-                print("Result:", calculator.multiply(a, b))
+        choice = input("\nChoose an option: ").strip()
 
-            elif operation == "4":
-                print("Result:", calculator.divide(a, b))
+        # =========================
+        # Basic Calculator
+        # =========================
+
+        if choice == "1":
+
+            try:
+                a = get_number("First number: ")
+                b = get_number("Second number: ")
+
+                calculator_menu()
+
+                operation = input("Choose operation: ").strip()
+
+                if operation == "1":
+                    result = calculator.add(a, b)
+                    print("Result:", result)
+
+                elif operation == "2":
+                    result = calculator.subtract(a, b)
+                    print("Result:", result)
+
+                elif operation == "3":
+                    result = calculator.multiply(a, b)
+                    print("Result:", result)
+
+                elif operation == "4":
+                    result = calculator.divide(a, b)
+                    print("Result:", result)
+
+                else:
+                    print("Invalid operation.")
+
+            except ValueError:
+                print("Please enter valid numbers.")
+
+        # =========================
+        # Unit Converter
+        # =========================
+
+        elif choice == "2":
+
+            unit_converter_menu()
+
+            option = input("Choose conversion: ").strip()
+
+            try:
+                value = get_number("Enter value: ")
+
+                if option == "1":
+                    result = unit_converter.celsius_to_kelvin(value)
+                    print("Result:", result)
+
+                elif option == "2":
+                    result = unit_converter.kelvin_to_celsius(value)
+                    print("Result:", result)
+
+                elif option == "3":
+                    result = unit_converter.kg_to_gram(value)
+                    print("Result:", result)
+
+                elif option == "4":
+                    result = unit_converter.gram_to_kg(value)
+                    print("Result:", result)
+
+                elif option == "5":
+                    result = unit_converter.meter_to_cm(value)
+                    print("Result:", result)
+
+                elif option == "6":
+                    result = unit_converter.cm_to_meter(value)
+                    print("Result:", result)
+
+                else:
+                    print("Invalid conversion.")
+
+            except ValueError:
+                print("Please enter a valid number.")
+
+        # =========================
+        # Fluid Mechanics
+        # =========================
+
+        elif choice == "3":
+
+            fluid_mechanics(fluid)
+
+        # =========================
+        # Thermodynamics
+        # =========================
+
+        elif choice == "4":
+
+            thermodynamics(thermo)
+
+        # =========================
+        # Material Balance
+        # =========================
+
+        elif choice == "5":
+
+            material_balance(material)
+
+        # =========================
+        # Heat Transfer
+        # =========================
+
+        elif choice == "6":
+
+            heat_transfer(heat)
+
+        # =========================
+        # Mass Transfer
+        # =========================
+
+        elif choice == "7":
+
+            mass_transfer(mass)
+
+        # =========================
+        # Reaction Engineering
+        # =========================
+
+        elif choice == "8":
+
+            reaction_engineering(reaction)
+
+        # =========================
+        # Molar Mass Calculator
+        # =========================
+
+        elif choice == "9":
+
+            formula = input(
+                "Enter chemical formula (Example: H2O): "
+            ).strip()
+
+            if not formula:
+                print("Error: Chemical formula cannot be empty.")
+                continue
+
+            result = chem.molar_mass(formula)
+
+            print(f"Molar Mass = {result} g/mol")
+
+        # =========================
+        # View Saved History
+        # =========================
+
+        elif choice == "10":
+
+            history = load_history()
+
+            if history:
+                print("\n===== Saved History =====")
+
+                for item in history:
+                    print(item)
 
             else:
-                print("Invalid operation.")
+                print("No saved history.")
 
-        except ValueError:
-            print("Please enter valid numbers.")
+        # =========================
+        # Clear History
+        # =========================
 
-    # =========================
-    # Unit Converter
-    # =========================
-    elif choice == "2":
+        elif choice == "11":
 
-        unit_converter_menu()
+            clear_history()
 
-        option = input("Choose conversion: ")
+            print("History cleared.")
 
-        try:
-            value = float(input("Enter value: "))
+        # =========================
+        # About
+        # =========================
 
-            if option == "1":
-                print("Result:", unit_converter.celsius_to_kelvin(value))
+        elif choice == "12":
 
-            elif option == "2":
-                print("Result:", unit_converter.kelvin_to_celsius(value))
+            about()
 
-            elif option == "3":
-                print("Result:", unit_converter.kg_to_gram(value))
+        # =========================
+        # Exit
+        # =========================
 
-            elif option == "4":
-                print("Result:", unit_converter.gram_to_kg(value))
+        elif choice == "13":
 
-            elif option == "5":
-                print("Result:", unit_converter.meter_to_cm(value))
+            print(
+                "\nThank you for using the "
+                "Chemical Engineering Toolkit!"
+            )
 
-            elif option == "6":
-                print("Result:", unit_converter.cm_to_meter(value))
+            break
 
-            else:
-                print("Invalid conversion.")
+        # =========================
+        # Invalid Main Menu Choice
+        # =========================
 
-        except ValueError:
-            print("Please enter a valid number.")
-
-    # =========================
-    # Fluid Mechanics
-    # =========================
-    elif choice == "3":
-        fluid_mechanics(fluid)
-
-    # =========================
-    # Thermodynamics
-    # =========================
-    elif choice == "4":
-        thermodynamics(thermo)
-
-    # =========================
-    # Material Balance
-    # =========================
-    elif choice == "5":
-        material_balance(material)
-
-    # =========================
-    # Heat Transfer
-    # =========================
-    elif choice == "6":
-        heat_transfer(heat)
-
-    # =========================
-    # Mass Transfer
-    # =========================
-    elif choice == "7":
-        mass_transfer(mass)
-
-    # =========================
-    # Reaction Engineering
-    # =========================
-    elif choice == "8":
-        reaction_engineering(reaction)
-
-    # =========================
-    # Molar Mass
-    # =========================
-    elif choice == "9":
-
-        formula = input("Enter chemical formula (Example: H2O): ")
-
-        result = chem.molar_mass(formula)
-
-        print(f"Molar Mass = {result} g/mol")
-
-    # =========================
-    # View History
-    # =========================
-    elif choice == "10":
-
-        history = load_history()
-
-        if history:
-            print("\n===== Saved History =====")
-            for item in history:
-                print(item)
         else:
-            print("No saved history.")
 
-    # =========================
-    # Clear History
-    # =========================
-    elif choice == "11":
-        clear_history()
-        print("History cleared.")
+            print("Invalid option. Please choose 1-13.")
 
-    # =========================
-    # About
-    # =========================
-    elif choice == "12":
-        about()
 
-    # =========================
-    # Exit
-    # =========================
-    elif choice == "13":
-        print("Thank you for using the Chemical Engineering Toolkit!")
-        break
+# =========================
+# Program Entry Point
+# =========================
 
-    else:
-        print("Invalid option.")
-    
+if __name__ == "__main__":
+    main()
