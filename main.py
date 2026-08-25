@@ -1,3 +1,4 @@
+from result_display import show_result
 from input_handler import get_number
 
 from calculator import Calculator
@@ -17,6 +18,12 @@ from menus import (
     main_menu,
     calculator_menu,
     unit_converter_menu,
+    fluid_mechanics_menu,
+    thermodynamics_menu,
+    material_balance_menu,
+    heat_transfer_menu,
+    mass_transfer_menu,
+    reaction_engineering_menu,
 )
 
 
@@ -258,14 +265,7 @@ def main():
 
             while True:
 
-                print("\n========== Fluid Mechanics ==========")
-                print("1. Density")
-                print("2. Reynolds Number")
-                print("3. Flow Rate")
-                print("4. Pipe Velocity")
-                print("5. Pressure Drop")
-                print("6. Bernoulli Equation")
-                print("7. Back")
+                fluid_mechanics_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -281,7 +281,7 @@ def main():
                             volume
                         )
 
-                        print("Density =", result, "kg/m³")
+                        show_result("Density", result, "kg/m³")
 
                     elif option == "2":
 
@@ -297,7 +297,7 @@ def main():
                             viscosity
                         )
 
-                        print("Reynolds Number =", result)
+                        show_result("Reynolds Number", result)
 
                     elif option == "3":
 
@@ -309,7 +309,7 @@ def main():
                             velocity
                         )
 
-                        print("Flow Rate =", result, "m³/s")
+                        show_result("Flow Rate", result, "m³/s")
 
                     elif option == "4":
 
@@ -321,7 +321,7 @@ def main():
                             area
                         )
 
-                        print("Velocity =", result, "m/s")
+                        show_result(" Pipe Velocity", result, "m/s")
 
                     elif option == "5":
 
@@ -339,7 +339,7 @@ def main():
                             velocity
                         )
 
-                        print("Pressure Drop =", result, "Pa")
+                        show_result("Pressure Drop", result, "Pa")
 
                     elif option == "6":
 
@@ -361,7 +361,7 @@ def main():
                             density
                         )
 
-                        print("Pressure 2 =", result, "Pa")
+                        show_result("Bernoulli Equation - Pressure 2", result, "Pa")
 
                     elif option == "7":
                         break
@@ -380,14 +380,7 @@ def main():
 
             while True:
 
-                print("\n========== Thermodynamics ==========")
-                print("1. Ideal Gas Law")
-                print("2. Boyle's Law")
-                print("3. Charles's Law")
-                print("4. Combined Gas Law")
-                print("5. Specific Heat")
-                print("6. Enthalpy Change")
-                print("7. Back")
+                thermodynamics_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -405,7 +398,7 @@ def main():
                             temperature
                         )
 
-                        print("Number of moles =", result)
+                        show_result("Ideal Gas Law - Number of Moles", result, "mol")
 
                     elif option == "2":
 
@@ -419,7 +412,7 @@ def main():
                             volume2
                         )
 
-                        print("Final Pressure =", result)
+                        show_result("Boyle's Law - Final Pressure", result, "Pa")
 
                     elif option == "3":
 
@@ -433,7 +426,7 @@ def main():
                             temperature2
                         )
 
-                        print("Final Volume =", result)
+                        show_result("Charles's Law - Final Volume", result, "m³")
 
                     elif option == "4":
 
@@ -451,7 +444,7 @@ def main():
                             temperature2
                         )
 
-                        print("Final Pressure =", result)
+                        show_result("Combined Gas Law - Final Pressure", result, "Pa")
 
                     elif option == "5":
 
@@ -469,7 +462,7 @@ def main():
                             temperature_change
                         )
 
-                        print("Heat =", result, "J")
+                        show_result("Specific Heat - Heat Transfer", result, "J")
 
                     elif option == "6":
 
@@ -485,7 +478,7 @@ def main():
                             temperature_change
                         )
 
-                        print("Enthalpy Change =", result, "J")
+                        show_result("Enthalpy Change", result, "J")
 
                     elif option == "7":
                         break
@@ -504,17 +497,7 @@ def main():
 
             while True:
 
-                print("\n========== Material Balance ==========")
-                print("1. Overall Mass Balance")
-                print("2. Component Balance")
-                print("3. Conversion")
-                print("4. Yield")
-                print("5. Selectivity")
-                print("6. Recycle Ratio")
-                print("7. Purge Ratio")
-                print("8. Mixing")
-                print("9. Separation Efficiency")
-                print("10. Back")
+                material_balance_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -530,7 +513,7 @@ def main():
                             accumulation
                         )
 
-                        print("Mass Balance =", result, "kg")
+                        show_result("Overall Mass Balance", result, "kg")
 
                     elif option == "2":
 
@@ -542,7 +525,7 @@ def main():
                             accumulation
                         )
 
-                        print("Component Balance =", result, "kg")
+                        show_result("Component Balance", result, "kg")
 
                     elif option == "3":
 
@@ -554,7 +537,7 @@ def main():
                             final
                         )
 
-                        print("Conversion =", result, "%")
+                        show_result("Conversion", result, "%")
 
                     elif option == "4":
 
@@ -566,7 +549,7 @@ def main():
                             theoretical
                         )
 
-                        print("Yield =", result, "%")
+                        show_result("Yield Percentage", result, "%")
 
                     elif option == "5":
 
@@ -578,7 +561,7 @@ def main():
                             undesired
                         )
 
-                        print("Selectivity =", result)
+                        show_result("Selectivity", result, "")
 
                     elif option == "6":
 
@@ -590,7 +573,7 @@ def main():
                             fresh_feed
                         )
 
-                        print("Recycle Ratio =", result)
+                        show_result("Recycle Ratio", result, "")
 
                     elif option == "7":
 
@@ -602,7 +585,7 @@ def main():
                             recycle
                         )
 
-                        print("Purge Ratio =", result)
+                        show_result("Purge Ratio", result, "")
 
                     elif option == "8":
 
@@ -618,8 +601,8 @@ def main():
                             composition2
                         )
 
-                        print("Total Mass =", result[0])
-                        print("Mixed Composition =", result[1])
+                        show_result("Total Mass", result[0], "kg")
+                        show_result("Mixed Composition", result[1], "")
 
                     elif option == "9":
 
@@ -631,7 +614,7 @@ def main():
                             feed
                         )
 
-                        print("Separation Efficiency =", result, "%")
+                        show_result("Separation Efficiency", result, "%")
 
                     elif option == "10":
                         break
@@ -650,14 +633,7 @@ def main():
 
             while True:
 
-                print("\n========== Heat Transfer ==========")
-                print("1. Heat Conduction")
-                print("2. Heat Convection")
-                print("3. Heat Radiation")
-                print("4. Overall Heat Transfer Coefficient")
-                print("5. LMTD")
-                print("6. Heat Exchanger Effectiveness")
-                print("7. Back")
+                heat_transfer_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -679,7 +655,7 @@ def main():
                             thickness
                         )
 
-                        print("Heat Transfer =", result, "W")
+                        show_result("Heat Transfer", result, "W")
 
                     elif option == "2":
 
@@ -699,7 +675,7 @@ def main():
                             fluid_temperature
                         )
 
-                        print("Heat Transfer =", result, "W")
+                        show_result("Heat Transfer", result, "W")
 
                     elif option == "3":
 
@@ -719,7 +695,7 @@ def main():
                             surrounding_temperature
                         )
 
-                        print("Radiation Heat Transfer =", result, "W")
+                        show_result("Radiation Heat Transfer", result, "W")
 
                     elif option == "4":
 
@@ -735,7 +711,7 @@ def main():
                             temperature_difference
                         )
 
-                        print("Overall Heat Transfer Coefficient =", result)
+                        show_result("Overall Heat Transfer Coefficient", result, "W")
 
                     elif option == "5":
 
@@ -747,7 +723,7 @@ def main():
                             delta_t2
                         )
 
-                        print("LMTD =", result, "K")
+                        show_result("LMTD", result, "K")
 
                     elif option == "6":
 
@@ -759,7 +735,7 @@ def main():
                             maximum
                         )
 
-                        print("Effectiveness =", result, "%")
+                        show_result("Effectiveness", result, "%")
 
                     elif option == "7":
                         break
@@ -778,17 +754,7 @@ def main():
 
             while True:
 
-                print("\n========== Mass Transfer ==========")
-                print("1. Fick's First Law")
-                print("2. Diffusion Coefficient")
-                print("3. Mass Flux")
-                print("4. Convective Mass Transfer")
-                print("5. Sherwood Number")
-                print("6. Schmidt Number")
-                print("7. Lewis Number")
-                print("8. Peclet Number")
-                print("9. Overall Mass Transfer Coefficient")
-                print("10. Back")
+                mass_transfer_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -812,7 +778,7 @@ def main():
                             distance
                         )
 
-                        print("Mass Flux =", result)
+                        show_result("Mass Flux", result, "kg/(m²·s)")
 
                     elif option == "2":
 
@@ -828,7 +794,7 @@ def main():
                             distance
                         )
 
-                        print("Diffusion Coefficient =", result, "m²/s")
+                        show_result("Diffusion Coefficient", result, "m²/s")
 
                     elif option == "3":
 
@@ -840,7 +806,7 @@ def main():
                             area
                         )
 
-                        print("Mass Flux =", result)
+                        show_result("Mass Flux", result, "kg/(m²·s)")
 
                     elif option == "4":
 
@@ -860,7 +826,7 @@ def main():
                             bulk
                         )
 
-                        print("Mass Transfer =", result)
+                        show_result("Mass Transfer", result, "kg/s")
 
                     elif option == "5":
 
@@ -880,7 +846,7 @@ def main():
                             diffusion
                         )
 
-                        print("Sherwood Number =", result)
+                        show_result("Sherwood Number", result, "")
 
                     elif option == "6":
 
@@ -896,7 +862,7 @@ def main():
                             diffusion
                         )
 
-                        print("Schmidt Number =", result)
+                        show_result("Schmidt Number", result, "")
 
                     elif option == "7":
 
@@ -912,7 +878,7 @@ def main():
                             diffusion
                         )
 
-                        print("Lewis Number =", result)
+                        show_result("Lewis Number", result, "")
 
                     elif option == "8":
 
@@ -923,8 +889,7 @@ def main():
                             reynolds,
                             schmidt
                         )
-
-                        print("Peclet Number =", result)
+                        show_result("Peclet Number", result, "")
 
                     elif option == "9":
 
@@ -938,10 +903,7 @@ def main():
                             concentration_difference
                         )
 
-                        print(
-                            "Overall Mass Transfer Coefficient =",
-                            result
-                        )
+                        show_result("Overall Mass Transfer Coefficient", result, "kg/(m²·s)")
 
                     elif option == "10":
                         break
@@ -960,18 +922,7 @@ def main():
 
             while True:
 
-                print("\n========== Reaction Engineering ==========")
-                print("1. Reaction Rate")
-                print("2. First Order Reaction")
-                print("3. Second Order Reaction")
-                print("4. Arrhenius Equation")
-                print("5. Residence Time")
-                print("6. Reactor Conversion")
-                print("7. Half Life")
-                print("8. CSTR Volume")
-                print("9. PFR Volume")
-                print("10. Equilibrium Constant")
-                print("11. Back")
+                reaction_engineering_menu()
 
                 option = input("Choose an option: ").strip()
 
@@ -989,7 +940,7 @@ def main():
                             reaction_order
                         )
 
-                        print("Reaction Rate =", result)
+                        show_result("Reaction Rate", result, "mol/(m³·s)")
 
                     elif option == "2":
 
@@ -1007,7 +958,7 @@ def main():
                             time
                         )
 
-                        print("Final Concentration =", result)
+                        show_result("Final Concentration", result, "mol/m³")
 
                     elif option == "3":
 
@@ -1025,7 +976,7 @@ def main():
                             time
                         )
 
-                        print("Final Concentration =", result)
+                        show_result("Final Concentration", result, "mol/m³")
 
                     elif option == "4":
 
@@ -1045,7 +996,7 @@ def main():
                             temperature
                         )
 
-                        print("Rate Constant =", result)
+                        show_result("Rate Constant", result, "1/s")
 
                     elif option == "5":
 
@@ -1061,7 +1012,7 @@ def main():
                             flow_rate
                         )
 
-                        print("Residence Time =", result, "s")
+                        show_result("Residence Time", result, "s")
 
                     elif option == "6":
 
@@ -1073,7 +1024,7 @@ def main():
                             outlet
                         )
 
-                        print("Conversion =", result, "%")
+                        show_result("Conversion", result, "%")
 
                     elif option == "7":
 
@@ -1085,7 +1036,7 @@ def main():
                             rate_constant
                         )
 
-                        print("Half Life =", result, "s")
+                        show_result("Half Life", result, "s")
 
                     elif option == "8":
 
@@ -1105,7 +1056,7 @@ def main():
                             reaction_rate
                         )
 
-                        print("CSTR Volume =", result, "m³")
+                        show_result("CSTR Volume", result, "m³")
 
                     elif option == "9":
 
@@ -1125,7 +1076,7 @@ def main():
                             reaction_rate
                         )
 
-                        print("PFR Volume =", result, "m³")
+                        show_result("PFR Volume", result, "m³")
 
                     elif option == "10":
 
@@ -1137,7 +1088,7 @@ def main():
                             reactants
                         )
 
-                        print("Equilibrium Constant =", result)
+                        show_result("Equilibrium Constant", result, "")
 
                     elif option == "11":
                         break
@@ -1166,9 +1117,7 @@ def main():
 
                 result = chem.molar_mass(formula)
 
-                print(
-                    f"Molar Mass = {result} g/mol"
-                )
+                show_result("Molar Mass", result, "g/mol")
 
             except ValueError as e:
 

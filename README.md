@@ -1,29 +1,30 @@
 # Chemical Engineering Toolkit
 
-A Python-based command-line toolkit for performing common Chemical Engineering calculations.
+A modular Python-based engineering calculation toolkit designed for Chemical Engineering students and engineers.
 
-## Developed By
+The application provides a command-line interface for performing common calculations across fluid mechanics, thermodynamics, material balances, heat transfer, mass transfer, reaction engineering, and chemistry.
 
-**Fedesa Belete**
-
-## Version
-
-**1.2**
+---
 
 ## Overview
 
-Chemical Engineering Toolkit is an interactive Python application designed to help Chemical Engineering students perform engineering calculations quickly from a command-line interface.
+Chemical Engineering Toolkit demonstrates the practical application of programming and engineering principles through a modular calculation system.
 
-The project combines:
+The project was developed to combine:
 
-- Chemical Engineering principles
+- Chemical Engineering fundamentals
 - Python programming
 - Object-Oriented Programming (OOP)
-- Modular software design
-- File handling
+- Modular software architecture
 - Input validation
+- Exception handling
+- File handling
+- Calculation history
+- Git and GitHub version control
 
-The goal is to provide a practical engineering calculation environment while demonstrating how programming can be applied to Chemical Engineering problems.
+The primary goal is to provide a structured educational engineering calculator while developing software engineering skills applicable to Chemical Engineering.
+
+> **Note:** This toolkit is intended for educational and preliminary calculation purposes. Engineering results should be independently verified before being used in real industrial design or safety-critical applications.
 
 ---
 
@@ -42,8 +43,9 @@ The goal is to provide a practical engineering calculation environment while dem
 - Density
 - Reynolds Number
 - Flow Rate
-- Velocity
+- Pipe Velocity
 - Pressure Drop
+- Bernoulli Equation
 
 ## Thermodynamics
 
@@ -103,31 +105,47 @@ The goal is to provide a practical engineering calculation environment while dem
 ## Chemistry
 
 - Molar Mass Calculator
-- Chemical Formula Validation
-- Support for selected common elements
-- Invalid formula detection
-- Invalid character detection
-- Empty input validation
+- Chemical Formula Parsing
+- Parenthesized Chemical Groups
+- Formula Validation
+- Element Validation
+- Invalid Character Detection
+- Empty Input Validation
 
 ---
 
-# Technologies Used
+# Project Structure
 
-- Python 3
-- Object-Oriented Programming (OOP)
-- Modular Programming
-- File Handling
-- Exception Handling
-- Command-Line Interface (CLI)
-- Git and GitHub
-
----
-
-# Running the Application
-
-The project uses Python 3.
-
-From the project directory, run:
-
-```powershell
-python main.py
+```text
+ChemicalEngineeringToolkit/
+│
+├── engineering/
+│   ├── __init__.py
+│   ├── calculator.py
+│   ├── chemistry.py
+│   ├── fluid_mechanics.py
+│   ├── heat_transfer.py
+│   ├── mass_transfer.py
+│   ├── material_balance.py
+│   ├── reaction_engineering.py
+│   └── thermodynamics.py
+│
+├── data/
+│   ├── calculations.csv
+│   └── history.txt
+│
+├── docs/
+│
+├── about.py
+├── calculator.py
+├── constants.py
+├── file_manager.py
+├── history.py
+├── input_handler.py
+├── main.py
+├── menus.py
+├── unit_converter.py
+├── utils.py
+├── periodic_table.json
+├── README.md
+└── .gitignore
