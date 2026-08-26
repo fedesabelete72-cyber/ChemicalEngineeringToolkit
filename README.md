@@ -134,8 +134,6 @@ ChemicalEngineeringToolkit/
 │   ├── calculations.csv
 │   └── history.txt
 │
-├── docs/
-│
 ├── about.py
 ├── calculator.py
 ├── constants.py
@@ -149,3 +147,32 @@ ChemicalEngineeringToolkit/
 ├── periodic_table.json
 ├── README.md
 └── .gitignore
+---
+
+# Running the Application
+
+## Requirements
+
+- Python 3.10 or newer
+
+## Run from Source
+
+From the project directory, run:
+
+```powershell
+python main.py
+```
+
+## Windows Executable
+
+A Windows executable can be built using PyInstaller:
+
+```powershell
+python -m PyInstaller ChemicalEngineeringToolkit.spec
+```
+
+The generated executable will be located in:
+
+```text
+dist/ChemicalEngineeringToolkit.exe
+```
