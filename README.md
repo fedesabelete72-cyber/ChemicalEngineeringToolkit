@@ -176,3 +176,24 @@ The generated executable will be located in:
 ```text
 dist/ChemicalEngineeringToolkit.exe
 ```
+---
+
+# Feedback and Bug Reports
+
+If you find a bug, incorrect calculation, or have a useful feature suggestion, please open an issue in the GitHub repository.
+
+When reporting a calculation problem, include:
+
+- Calculation/module used
+- Input values
+- Result produced
+- Expected result, if known
+- Any error message displayed
+
+For feature requests, describe the proposed feature and why it would be useful.
+
+---
+
+# License
+
+This project is provided for educational and preliminary engineering calculation purposes.
